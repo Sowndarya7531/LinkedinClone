@@ -21,7 +21,7 @@ const CreatePost = () => {
     if (image) formData.append('image', image);
 
     try {
-      await axios.post('http://localhost:5000/api/posts', formData, {
+      await axios.post('https://linkedinclone-ce15.onrender.com/api/posts', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Post created');
@@ -51,3 +51,4 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
