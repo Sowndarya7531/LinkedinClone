@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-// Multer configuration for profile pic upload
+// Multer for profile pic upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -15,35 +15,33 @@ const storage = multer.diskStorage({
     cb(null, uniqueName + path.extname(file.originalname));
   }
 });
-
 const upload = multer({ storage });
 
 /**
- *  GET /api/users/test
- * Simple test route to check API is working
+ * @route GET /api/users/test
+ * @desc Test the users route
  */
 router.get('/test', (req, res) => {
-  res.send('Users API is working ✅');
+  res.send("Users API is working ✅");
 });
 
 /**
- *  GET /api/users/:id
- * Get user details by ID
+ * @route GET /api/users
+ * @desc Get all users
  */
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select('-password'); // exclude password
-    if (!user) return res.status(404).json({ message: 'User not found' });
-    res.json(user);
+    const users = await User.find();
+    res.json(users);
   } catch (err) {
-    console.error('Error fetching user:', err);
+    console.error('Error fetching users:', err);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
 /**
- *  PUT /api/users/:id
- * Update user profile info and profile picture
+ * @route PUT /api/users/:id
+ * @desc Update user profile
  */
 router.put('/:id', upload.single('profilePic'), async (req, res) => {
   try {
