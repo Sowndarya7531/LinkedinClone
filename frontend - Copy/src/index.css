@@ -1,0 +1,59 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+input, textarea, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #0073b1;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005582;
+}
+
+.navbar {
+  background-color: #283e4a;
+  padding: 10px;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+.navbar button {
+  background: none;
+  border: none;
+  color: white;
+  margin-right: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}
