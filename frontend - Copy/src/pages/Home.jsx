@@ -26,7 +26,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/posts');
+        const res = await axios.get('https://linkedinclone-ce15.onrender.com/api/posts');
         setPosts(res.data);
       } catch (err) {
         console.error('Failed to load posts', err);
@@ -41,7 +41,7 @@ const Home = () => {
 
   const handleLike = async (postId) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/api/posts/${postId}/like`);
+      const res = await axios.patch(`https://linkedinclone-ce15.onrender.com/api/posts/${postId}/like`);
       setPosts((prevPosts) =>
         prevPosts.map((post) => (post._id === postId ? res.data : post))
       );
@@ -58,7 +58,7 @@ const Home = () => {
           <img
             src={
               user?.profilePic
-                ? `http://localhost:5000/uploads/${user.profilePic}`
+                ? `https://linkedinclone-ce15.onrender.com/uploads/${user.profilePic}`
                 : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWGNnlvR10sY3jn6-xUAoRIYuAz0KodHzLow&s'
             }
             alt="User"
@@ -92,7 +92,7 @@ const Home = () => {
               <p>{post.content}</p>
               {post.image && (
                 <img
-                  src={`http://localhost:5000/uploads/${post.image}`}
+                  src={`https://linkedinclone-ce15.onrender.com/uploads/${post.image}`}
                   alt="post"
                   className="post-img"
                 />
