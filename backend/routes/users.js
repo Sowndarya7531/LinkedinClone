@@ -5,7 +5,7 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-// Multer for profile pic upload
+// Multer configuration for profile pic upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
@@ -15,9 +15,36 @@ const storage = multer.diskStorage({
     cb(null, uniqueName + path.extname(file.originalname));
   }
 });
+
 const upload = multer({ storage });
 
-// PUT /api/users/:id
+/**
+ *  GET /api/users/test
+ * Simple test route to check API is working
+ */
+router.get('/test', (req, res) => {
+  res.send('Users API is working ✅');
+});
+
+/**
+ *  GET /api/users/:id
+ * Get user details by ID
+ */
+router.get('/:id', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password'); // exclude password
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    console.error('Error fetching user:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+/**
+ *  PUT /api/users/:id
+ * Update user profile info and profile picture
+ */
 router.put('/:id', upload.single('profilePic'), async (req, res) => {
   try {
     const updates = {
