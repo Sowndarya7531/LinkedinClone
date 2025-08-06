@@ -18,7 +18,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/posts`);
+        const res = await axios.get(`https://linkedinclone-ce15.onrender.com/api/posts`);
         const filtered = res.data.filter(p => p.userId === id);
         setPosts(filtered);
       } catch (err) {
@@ -35,7 +35,7 @@ const Profile = () => {
       formData.append('bio', bio);
       if (pic) formData.append('profilePic', pic);
 
-      const res = await axios.put(`http://localhost:5000/api/users/${id}`, formData, {
+      const res = await axios.put(`https://linkedinclone-ce15.onrender.com/api/users/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -63,7 +63,7 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-header">
         <img
-          src={preview || (user?.profilePic ? `http://localhost:5000/uploads/${user.profilePic}` : "https://via.placeholder.com/150")}
+          src={preview || (user?.profilePic ? `https://linkedinclone-ce15.onrender.com/uploads/${user.profilePic}` : "https://via.placeholder.com/150")}
           alt="Profile"
           className="profile-pic"
         />
@@ -99,7 +99,7 @@ const Profile = () => {
           <div className="post" key={post._id}>
             <p>{post.content}</p>
             {post.image && (
-              <img src={`http://localhost:5000/uploads/${post.image}`} alt="Post" className="post-img" />
+              <img src={`https://linkedinclone-ce15.onrender.com/uploads/${post.image}`} alt="Post" className="post-img" />
             )}
             <div className="interactions">
               <button>👍 Like ({post.likes || 0})</button>
@@ -113,3 +113,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
