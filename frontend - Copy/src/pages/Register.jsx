@@ -10,7 +10,7 @@ const Register = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/register', form);
+      await axios.post('https://linkedinclone-ce15.onrender.com/api/auth/register', form);
       navigate('/login');
     } catch (err) {
       alert('Registration failed');
@@ -28,5 +28,6 @@ const Register = () => {
     </div>
   );
 };
+
 
 export default Register;
